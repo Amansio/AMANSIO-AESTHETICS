@@ -158,3 +158,16 @@ change it when authoring other scenes.
   downgrading Remotion).
 - Full 140-second storyboard and real imported voice audio were not rendered/tested.
   Keep Studio private; it is an authoring server, not a hardened production service.
+
+### Premium deliverable
+
+The directed seven-second episode (`hoodie_7_days_premium.mp4`) is rendered from the same deterministic pipeline:
+
+```sh
+cd animation
+npm run render:sandbox -- --output out/hoodie_7_days_premium.mp4
+# Re-encode for broad H.264 / yuv420p compatibility (requires the pinned Remotion ffmpeg):
+./node_modules/@remotion/compositor-linux-x64-gnu/ffmpeg -hide_banner -y -i out/hoodie_7_days_premium.mp4 -c:v libx264 -preset medium -crf 17 -color_range tv -pix_fmt yuv420p -movflags +faststart hoodie_7_days_premium.mp4
+```
+
+It produces 210 frames at 30 FPS (exactly 7.000 s), 1080×1920, H.264, yuv420p. Verified with ffprobe: `codec_name=h264`, `pix_fmt=yuv420p`, `width=1080`, `height=1920`, `nb_frames=210`, `duration=7.000000`.
