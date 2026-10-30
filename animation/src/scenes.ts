@@ -1,21 +1,32 @@
 import type {Scene} from './types';
 export const kitchen:Scene={
  id:'kitchen',duration:7,background:'backgrounds/kitchen.png',
- camera:{zoom:[1,1.045],x:[0,-10],y:[0,-12]},light:0.18,transition:0.22,
- countdown:{enabled:true,start:4.5,end:7,value:3,label:'SECONDS LEFT'},
+ camera:{zoom:[1,1.025],x:[0,-6],y:[0,-8]},light:0.18,transition:0.22,
+ countdown:{enabled:true,start:4.2,end:7,value:7,label:'7 DAYS'},
  narration:'You walk into the kitchen. Then you see it. You freeze.',
  actors:[
   {id:'hoodie',skin:'hoodie',s:3.8,keys:[
    {t:0,x:-170,y:1180,pose:'standing',expr:'neutral',face:1,gaze:0},
-   {t:2.3,x:365,y:1180,move:'walk'},
-   {t:2.8,pose:'standing',gaze:1,turn:0.6},
-   {t:3.7,pose:'think',expr:'worried'},
-   {t:4.55,pose:'arms_raised',expr:'surprised',rot:-7,turn:0,gaze:0},
-   {t:5.2,pose:'shrug',rot:-3},{t:7}]},
+   {t:0.75,x:40,move:'walk'},
+   {t:1.5,x:214,move:'walk'},
+   {t:2.25,x:352,move:'walk'},
+   {t:2.45,x:352,pose:'standing'},
+   {t:2.7,gaze:1},
+   {t:3.0,turn:0.35},
+   {t:3.55,pose:'think',expr:'worried'},
+   {t:4.82,x:352,turn:0.45},
+   {t:4.85,expr:'surprised',pose:'shrug',x:340,turn:0.5},
+   {t:5.9,pose:'think',x:348,turn:0.5},
+   {t:7}]},
   {id:'mother',skin:'mother',s:3.65,keys:[
-   {t:0,x:795,y:1158,pose:'holding',expr:'neutral',face:1,gaze:1,turn:0.8},
-   {t:2.8,pose:'standing',face:-1,gaze:0,turn:0},
-   {t:4.2,pose:'hands_hips',expr:'worried'}, {t:7}]}
+   {t:0,x:795,y:1158,pose:'holding',expr:'neutral',face:1,gaze:0,turn:0,wiggle:{a:4,p:1.5}},
+   {t:2.7,pose:'standing',wiggle:{a:0,p:1.5}},
+   {t:3.3,gaze:-1},
+   {t:3.6,turn:-0.6},
+   {t:4.0,turn:-0.7,expr:'happy'},
+   {t:4.95,expr:'worried'},
+   {t:6.0,turn:-0.85},
+   {t:7}]}
  ]
 };
 // Editable storyboard slots, not twenty finished scenes. Replace each slot with its own actors/assets/audio.
