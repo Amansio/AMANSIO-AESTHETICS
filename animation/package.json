@@ -1,0 +1,35 @@
+{
+  "name": "hoodie-cinema",
+  "version": "1.0.0",
+  "description": "CPU-first articulated stickman cinema with Figures and Remotion",
+  "scripts": {
+    "studio": "remotion studio src/index.ts --host=0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "render": "remotion render src/index.ts Kitchen out/kitchen.mp4 --codec=h264 --concurrency=1 --gl=swangle",
+    "render:full": "remotion render src/index.ts Story20 out/story.mp4 --codec=h264 --concurrency=1 --gl=swangle",
+    "background": "tsx scripts/background.ts",
+    "render:sandbox": "node scripts/sandbox-render.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "@remotion/media-utils": "4.0.539",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "153.0.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "sharp": "0.35.5",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  },
+  "private": true,
+  "overrides": {
+    "zod": "4.6.6"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "figures": {
+      "source": "cherifya/figures",
+      "sourceType": "github",
+      "skillPath": "skills/figures/SKILL.md",
+      "computedHash": "24d9d37fc64f1473ce191528092c780fbf84ad74abe0c6513ec995eb26d21893"
+    }
+  }
+}

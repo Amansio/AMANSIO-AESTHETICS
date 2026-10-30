@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {kitchen,storyboard,validateScenes} from '../src/scenes';
+import {sample,frameSvg,INK,CREAM,BLUE} from '../src/rig';
+test('210-frame POC and 4200-frame storyboard',()=>{validateScenes([kitchen]);validateScenes(storyboard);assert.equal(kitchen.duration*30,210);assert.equal(storyboard.reduce((s,c)=>s+c.duration*30,0),4200);});
+test('all frames finite, deterministic and exact brand palette',()=>{for(let f=0;f<210;f++){const svg=frameSvg(kitchen.actors,f/30);assert.equal(svg,frameSvg(kitchen.actors,f/30));assert.doesNotMatch(svg,/NaN|undefined|Infinity/);for(const c of [INK,CREAM,BLUE])assert.ok(svg.includes(c));}});
+test('walk articulates joints, not only translation',()=>{const a=kitchen.actors[0],s1=sample(a,.7),s2=sample(a,1.1);assert.notDeepEqual(s1.p.ll,s2.p.ll);assert.notDeepEqual(s1.p.ra,s2.p.ra);assert.ok(s2.s.x>s1.s.x);});
+test('mother turns and Hoodie reacts',()=>{assert.ok(sample(kitchen.actors[1],4).fc<0);assert.equal(sample(kitchen.actors[0],5).X.name,'surprised');});
+test('idle breath and blink remain animated',()=>{const a=kitchen.actors[0];assert.notDeepEqual(sample(a,6).p.head,sample(a,6.3).p.head);assert.ok(Array.from({length:210},(_,f)=>sample(a,f/30).blink).some(v=>v<.7));});
+test('narration guard and ordered key validation',()=>{assert.throws(()=>validateScenes([{...kitchen,narration:'Hoodie walks in.'}]));assert.throws(()=>validateScenes([{...kitchen,actors:[{...kitchen.actors[0],keys:[{t:1}]}]}]));});
